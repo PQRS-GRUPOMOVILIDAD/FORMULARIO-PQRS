@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Novedades</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .subarea, #otraAreaInput { display: none; margin-left: 20px; margin-top: 10px; }
+    label { display: block; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<h2>Formulario de Novedades</h2>
+
+<form id="formularioNovedades">
+  <!-- Datos básicos -->
+  <label>Placa:
+    <input type="text" name="placa" required>
+  </label>
+
+  <label>Nombres y Apellidos:
+    <input type="text" name="nombre" required>
+  </label>
+
+  <label>Número de WhatsApp:
+    <input type="tel" name="whatsapp" required>
+  </label>
+
+  <!-- Áreas -->
+  <p><strong>¿Área con la que presentó la novedad?</strong></p>
+  <label><input type="checkbox" name="area" value="puerta" onchange="toggleSubareas()"> Puerta</label>
+  <label><input type="checkbox" name="area" value="recepcion" onchange="toggleSubareas()"> Recepción del vehículo</label>
+  <label><input type="checkbox" name="area" value="pago" onchange="toggleSubareas()"> Punto de pago o facturación</label>
+  <label><input type="checkbox" name="area" value="entrega" onchange="toggleSubareas()"> Entrega del vehículo</label>
+  <label><input type="checkbox" name="area" value="cliente" onchange="toggleSubareas()"> Atención al cliente</label>
+  <label><input type="checkbox" name="area" value="callcenter" onchange="toggleSubareas()"> Call center</label>
+  <label><input type="checkbox" name="area" value="otra" onchange="toggleSubareas()"> Otra</label>
+
+  <!-- Subcategorías por área -->
+  <div id="puerta" class="subarea">
+    <strong>Puerta:</strong><br>
+    <label><input type="checkbox"> Atención</label>
+    <label><input type="checkbox"> No había personal</label>
+    <label><input type="checkbox"> Presentación personal</label>
+    <label><input type="checkbox"> Información</label>
+    <label><input type="checkbox"> Otra</label>
+  </div>
+
+  <div id="recepcion" class="subarea">
+    <strong>Recepción del vehículo:</strong><br>
+    <label><input type="checkbox"> Atención</label>
+    <label><input type="checkbox"> Manipulación del vehículo</label>
+    <label><input type="checkbox"> Presentación personal</label>
+    <label><input type="checkbox"> Información</label>
+    <label><input type="checkbox"> Otra</label>
+  </div>
+
+  <div id="pago" class="subarea">
+    <strong>Punto de pago o facturación:</strong><br>
+    <label><input type="checkbox"> Atención</label>
+    <label><input type="checkbox"> Facturación</label>
+    <label><input type="checkbox"> Cobro</label>
+    <label><input type="checkbox"> Presentación personal</label>
+    <label><input type="checkbox"> Información</label>
+    <label><input type="checkbox"> Otra</label>
+  </div>
+
+  <div id="entrega" class="subarea">
+    <strong>Entrega del vehículo:</strong><br>
+    <label><input type="checkbox"> Atención</label>
+    <label><input type="checkbox"> Manipulación del vehículo</label>
+    <label><input type="checkbox"> Entrega de resultado</label>
+    <label><input type="checkbox"> Tiempo de espera</label>
+    <label><input type="checkbox"> Otra</label>
+  </div>
+
+  <div id="cliente" class="subarea">
+    <strong>Atención al cliente:</strong><br>
+    <label><input type="checkbox"> Atención</label>
+    <label><input type="checkbox"> Acompañamiento</label>
+    <label><input type="checkbox"> Presentación personal</label>
+    <label><input type="checkbox"> Información</label>
+    <label><input type="checkbox"> Otra</label>
+  </div>
+
+  <div id="callcenter" class="subarea">
+    <strong>Call Center:</strong><br>
+    <label><input type="checkbox"> Atención</label>
+    <label><input type="checkbox"> Información</label>
+    <label><input type="checkbox"> Otra</label>
+  </div>
+
+  <!-- Otra área -->
+  <div id="otraAreaInput" class="subarea">
+    <label>Si es otra área, indique cuál:
+      <input type="text" name="otraArea">
+    </label>
+  </div>
+
+  <!-- Descripción -->
+  <label>Descripción breve de lo sucedido:
+    <textarea name="descripcion" rows="4" required></textarea>
+  </label>
+
+  <!-- Sede -->
+  <label>Sede:
+    <select name="sede" required>
+      <option value="">Seleccione una sede</option>
+      <option value="bogota">CDA MOVILIDAD BOGOTÁ (80 CON BOYACÁ)</option>
+      <option value="cota">CDA MOVILIDAD COLOMBIA (KM2 VÍA SIBERIA COTA)</option>
+    </select>
+  </label>
+
+  <br><br>
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+  function toggleSubareas() {
+    const areas = ["puerta", "recepcion", "pago", "entrega", "cliente", "callcenter"];
+    areas.forEach(area => {
+      const checkbox = document.querySelector(`input[value="${area}"]`);
+      const div = document.getElementById(area);
+      if (checkbox.checked) {
+        div.style.display = "block";
+      } else {
+        div.style.display = "none";
+      }
+    });
+
+    const otraCheckbox = document.querySelector('input[value="otra"]');
+    document.getElementById("otraAreaInput").style.display = otraCheckbox.checked ? "block" : "none";
+  }
+</script>
+
+</body>
+</html>
